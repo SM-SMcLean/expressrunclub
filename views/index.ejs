@@ -36,11 +36,14 @@
             <h2 class="uk-headking-small uk-text-left">My Schedule</h2>
 
             <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
+                <% const dateformat = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}; %>
                 <% schedule.forEach ((row) => { %>
                     <div>
                         <div class="uk-card uk-card-body uk-card-default">
+                            <% var rawdate = new Date(row.mydate); %>
+                            <%  var itemdate = new Intl.DateTimeFormat ('en-GB', dateformat).format(rawdate); %>
                             <h3 class="uk-card-title">
-                                <%= row.mydate %>
+                                <%= itemdate %>
                             </h3>
                             <%= row.items %>
                         </div>
