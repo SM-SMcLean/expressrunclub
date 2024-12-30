@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const conn = require('./utils/dbconn');
 const path = require('path');
+const router = express.Router();
 const PORT = 3000;
 
 const app = express();
@@ -9,9 +10,10 @@ const app = express();
 app.use(morgan('tiny'));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.urlencoded({extended: true}));
+app.use('/', router);
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
 
     const selectSQL = `SELECT * FROM runschedule`;
     conn.query(selectSQL, (err, rows) => {
@@ -23,11 +25,11 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/new', (req, res) => {
+router.get('/new', (req, res) => {
     res.render('addschedule');
 });
 
-app.post('/new', (req, res) => {
+router.post('/new', (req, res) => {
     const {new_details, new_date} = req.body;
     const vals = [new_details, new_date];
 
