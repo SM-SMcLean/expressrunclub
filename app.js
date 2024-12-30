@@ -1,8 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
+const dotenv = require('dotenv').config({path: './config.env'});
 const router = require('./routes/scheduleroutes');
 const path = require('path');
-const PORT = 3000;
+//const PORT = 3000;
 
 const app = express();
 
@@ -14,10 +15,10 @@ app.set('view engine', 'ejs');
 
 
 
-app.listen(PORT, (err) => {
+app.listen(process.env.PORT, (err) => {
     if (err) {
         console.log(err);
     } else {
-        console.log(`Express is listening on port ${PORT}`);
+        console.log(`Express is listening on port ${process.env.PORT}`);
     }
 });
