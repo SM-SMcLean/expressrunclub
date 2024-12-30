@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const conn = require('./utils/dbconn');
 const path = require('path');
 const PORT = 3000;
 
@@ -10,6 +11,16 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
+
+    const selectSQL = `SELECT * FROM runschedule`;
+    conn.query(selectSQL, (err, rows) => {
+        if (err) {
+            throw err;
+        } else {
+            console.log(rows);
+        }
+    });
+
     res.render('index');
 });
 
