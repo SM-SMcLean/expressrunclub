@@ -1,8 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
-const conn = require('./utils/dbconn');
+const router = require('./routes/scheduleroutes');
 const path = require('path');
-const router = express.Router();
 const PORT = 3000;
 
 const app = express();
@@ -13,37 +12,7 @@ app.use(express.urlencoded({extended: true}));
 app.use('/', router);
 app.set('view engine', 'ejs');
 
-router.get('/', (req, res) => {
 
-    const selectSQL = `SELECT * FROM runschedule`;
-    conn.query(selectSQL, (err, rows) => {
-        if (err) {
-            throw err;
-        } else {
-            res.render('index', {schedule: rows});
-        }
-    });
-});
-
-router.get('/new', (req, res) => {
-    res.render('addschedule');
-});
-
-router.post('/new', (req, res) => {
-    const {new_details, new_date} = req.body;
-    const vals = [new_details, new_date];
-
-    const insertSQL = `INSERT INTO runschedule (items, mydate) VALUES (?, ?)`;
-
-    conn.query(insertSQL, vals, (err, rows) => {
-        if (err) {
-            throw err;
-        } else {
-            res.redirect('/');
-        }
-    });
-
-});
 
 app.listen(PORT, (err) => {
     if (err) {
