@@ -10,7 +10,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    res.send('<h1>Welcome to Express Runclub!</h1>');
+    res.render('index');
 });
 
 app.listen(PORT, (err) => {
