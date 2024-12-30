@@ -32,13 +32,22 @@
     </div>
 
     <div class="uk-section uk-background-muted">
-    <div class="uk-container">
-        <h2 class="uk-headking-small uk-text-left">My Schedule</h2>
+        <div class="uk-container">
+            <h2 class="uk-headking-small uk-text-left">My Schedule</h2>
 
-        <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
-
+            <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
+                <% schedule.forEach ((row) => { %>
+                    <div>
+                        <div class="uk-card uk-card-body uk-card-default">
+                            <h3 class="uk-card-title">
+                                <%= row.mydate %>
+                            </h3>
+                            <%= row.items %>
+                        </div>
+                    </div>
+                    <% }); %>
+            </div>
         </div>
-    </div>
 
 </body>
 

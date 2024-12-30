@@ -17,11 +17,9 @@ app.get('/', (req, res) => {
         if (err) {
             throw err;
         } else {
-            console.log(rows);
+            res.render('index', {schedule: rows});
         }
     });
-
-    res.render('index');
 });
 
 app.listen(PORT, (err) => {
