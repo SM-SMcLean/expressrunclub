@@ -8,6 +8,7 @@ const app = express();
 
 app.use(morgan('tiny'));
 app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
@@ -20,6 +21,26 @@ app.get('/', (req, res) => {
             res.render('index', {schedule: rows});
         }
     });
+});
+
+app.get('/new', (req, res) => {
+    res.render('addschedule');
+});
+
+app.post('/new', (req, res) => {
+    const {new_details, new_date} = req.body;
+    const vals = [new_details, new_date];
+
+    const insertSQL = `INSERT INTO runschedule (items, mydate) VALUES (?, ?)`;
+
+    conn.query(insertSQL, vals, (err, rows) => {
+        if (err) {
+            throw err;
+        } else {
+            res.redirect('/');
+        }
+    });
+
 });
 
 app.listen(PORT, (err) => {
