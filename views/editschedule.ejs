@@ -53,10 +53,13 @@
                     <input class="uk-input" name="run_date" type="date" value="<%= formattedDate %>" required>
                 </div>
 
-                <div class="uk-width-1-4@s">
+                <div class="uk-width-auto">
                     <div uk-form-custom>
                         <button class="uk-button uk-button-secondary uk-button-large">Update</button>
                     </div>
+
+                    <div uk-form-custom>
+                        <button class="uk-button uk-button-danger uk-button-large" formaction="/del/<%= runid %>">Delete</button>    
                 </div>
             </form>
         </div>
