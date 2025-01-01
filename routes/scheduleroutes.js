@@ -75,4 +75,14 @@ router.post('/edit/:id', (req, res) => {
     });
 });
 
+router.post('/del/:id', (req, res) => {
+    const run_id = req.params.id;
+const deleteSQL = `DELETE FROM runschedule WHERE id = ${run_id}`; conn.query(deleteSQL, (err, rows) => {
+        if (err) {
+            throw err;
+} else {
+            res.redirect('/');
+        }
+}); });
+
 module.exports = router;
