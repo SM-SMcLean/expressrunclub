@@ -38,8 +38,9 @@
             <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
                 <% const dateformat={ weekday: 'long' , year: 'numeric' , month: 'long' , day: 'numeric' }; %>
                     <% schedule.forEach ((row)=> { %>
+                        <%  var scheduleid = row.id; %>
                         <div>
-                            <a href class="uk-display-block uk-card uk-card-body uk-card-default uk-link-toggle">
+                            <a href="/edit/<%= scheduleid %>" class="uk-display-block uk-card uk-card-body uk-card-default uk-link-toggle">
                                 <% var rawdate=new Date(row.mydate); %>
                                     <% var itemdate=new Intl.DateTimeFormat ('en-GB', dateformat).format(rawdate); %>
                                         <h3 class="uk-card-title"><span class="uk-link-heading">
