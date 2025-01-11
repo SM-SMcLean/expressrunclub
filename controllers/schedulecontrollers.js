@@ -75,7 +75,8 @@ exports.updateRun = (req, res) => {
 
 exports.deleteRun = (req, res) => {
     const run_id = req.params.id;
-    const deleteSQL = `DELETE FROM runschedule WHERE id = ${run_id}`; conn.query(deleteSQL, (err, rows) => {
+    const deleteSQL = `DELETE FROM runschedule WHERE id = ${run_id}`; 
+    conn.query(deleteSQL, (err, rows) => {
         if (err) {
             throw err;
         } else {
