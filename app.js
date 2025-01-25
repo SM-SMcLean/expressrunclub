@@ -1,9 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
 const dotenv = require('dotenv').config({path: './config.env'});
+const session = require('express-session');
 const router = require('./routes/scheduleroutes');
 const path = require('path');
-const session = require('express-session');
 //const PORT = 3000;
 
 const app = express();
@@ -20,8 +20,6 @@ app.use(session({
 
 app.use('/', router);
 app.set('view engine', 'ejs');
-
-
 
 app.listen(process.env.PORT, (err) => {
     if (err) {
