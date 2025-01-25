@@ -5,8 +5,11 @@ const router = express.Router();
 router.get('/', controller.getSchedule);
 router.get('/new', controller.getAddNewRun);
 router.get('/edit/:id', controller.selectRun);
+router.get('/login', controller.getLogin);
 router.post('/new', controller.postNewRun);
 router.post('/edit/:id', controller.updateRun);
 router.post('/del/:id', controller.deleteRun);
+router.post('/login', controller.postLogin);
+
 
 module.exports = router;

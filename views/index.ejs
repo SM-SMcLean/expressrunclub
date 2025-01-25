@@ -24,9 +24,15 @@
 
                     <ul class="uk-navbar-nav">
                         <li class="uk-active"><a href="/">Schedule</a></li>
-                        <li class="uk-parent"><a href="/new">Add</a></li>
                     </ul>
                 </div>
+
+                <div class="uk-navbar-right">
+                    <ul class="uk-navbar-nav">
+                        <li class="uk-active"><a href="/login">Login</a></li>
+                    </ul>
+                </div>
+
             </nav>
         </div>
     </div>
@@ -38,18 +44,20 @@
             <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
                 <% const dateformat={ weekday: 'long' , year: 'numeric' , month: 'long' , day: 'numeric' }; %>
                     <% schedule.forEach ((row)=> { %>
-                        <%  var scheduleid = row.id; %>
-                        <div>
-                            <a href="/edit/<%= scheduleid %>" class="uk-display-block uk-card uk-card-body uk-card-default uk-link-toggle">
-                                <% var rawdate=new Date(row.mydate); %>
-                                    <% var itemdate=new Intl.DateTimeFormat ('en-GB', dateformat).format(rawdate); %>
-                                        <h3 class="uk-card-title"><span class="uk-link-heading">
-                                                <%= itemdate %>
-                                            </span></h3>
-                                        <%= row.items %>
-                            </a>
-                        </div>
-                        <% }); %>
+                        <% var scheduleid=row.id; %>
+                            <div>
+                                <a href="/edit/<%= scheduleid %>"
+                                    class="uk-display-block uk-card uk-card-body uk-card-default uk-link-toggle">
+                                    <% var rawdate=new Date(row.mydate); %>
+                                        <% var itemdate=new Intl.DateTimeFormat ('en-GB', dateformat).format(rawdate);
+                                            %>
+                                            <h3 class="uk-card-title"><span class="uk-link-heading">
+                                                    <%= itemdate %>
+                                                </span></h3>
+                                            <%= row.items %>
+                                </a>
+                            </div>
+                            <% }); %>
             </div>
         </div>
 
