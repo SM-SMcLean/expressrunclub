@@ -75,10 +75,29 @@ exports.updateRun = (req, res) => {
 
 exports.deleteRun = (req, res) => {
     const run_id = req.params.id;
-    const deleteSQL = `DELETE FROM runschedule WHERE id = ${run_id}`; 
+    const deleteSQL = `DELETE FROM runschedule WHERE id = ${run_id}`;
     conn.query(deleteSQL, (err, rows) => {
         if (err) {
             throw err;
+        } else {
+            res.redirect('/');
+        }
+    });
+};
+
+exports.getLogin = (req, res) => {
+    res.render('login');
+};
+
+exports.postLogin = (req, res) => {
+    const { username, userpass } = req.body; const vals = [username, userpass]; console.log(vals);
+    const checkuserSQL = `SELECT * FROM runschedule_users WHERE name = ? AND password = ?`;
+    conn.query(checkuserSQL, vals, (err, rows) => {
+        if (err) throw err;
+        const numrows = rows.length; console.log(numrows);
+        if (numrows > 0) {
+            console.log(rows);
+            res.redirect('/');
         } else {
             res.redirect('/');
         }
